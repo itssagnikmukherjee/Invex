@@ -1,11 +1,131 @@
+{% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inventory</title>
+    {% tailwind_css %}
+    <script src="https://kit.fontawesome.com/8fe8423612.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <h1>Page after login</h1>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <div class="nav flex p-5 justify-between items-center bg-white shadow-md">
+        <div class="logoSec flex items-center">
+            <img src="{% static 'logo.png' %}" class="w-10 mr-2" alt="Logo">
+            <div class="logoText text-4xl font-semibold text-violet-700">Invex</div>
+        </div>
+
+        <div class="flex">
+            <!-- Search Bar -->
+            <div class="searchBar relative w-72 mr-5">
+                <input type="text" placeholder="Search Product ..." class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                <i class="fa-solid fa-magnifying-glass absolute left-3 top-3 text-gray-500"></i>
+            </div>
+
+            <!-- Add New Button -->
+            <a href="addProduct">
+                <div class="bg-violet-700 flex items-center px-6 py-2 rounded-lg text-white hover:bg-white hover:text-violet-700 border-2 border-violet-700 cursor-pointer transition duration-300">
+                    <i class="fa-solid fa-add mr-2"></i> Add New Product
+                </div>
+            </a>
+        </div>
+    </div>
+
+    <!-- Stats Section -->
+    <div class="grid grid-cols-4 gap-6 p-6 mr-32 ml-32">
+        <!-- Total Items -->
+        <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+            <div>
+                <p class="text-gray-600">Total Items</p>
+                <h2 class="text-2xl font-bold">2,431</h2>
+                <p class="text-green-600 text-sm"><i class="fa-solid fa-arrow-up"></i> 12% increase</p>
+            </div>
+            <div class="bg-blue-100 p-3 rounded-lg">
+                <i class="fa-solid fa-box text-blue-500 text-xl"></i>
+            </div>
+        </div>
+
+        <!-- Low Stock -->
+        <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+            <div>
+                <p class="text-gray-600">Low Stock</p>
+                <h2 class="text-2xl font-bold text-yellow-600">45</h2>
+                <p class="text-red-600 text-sm"><i class="fa-solid fa-exclamation-triangle"></i> 8 items critical</p>
+            </div>
+            <div class="bg-yellow-100 p-3 rounded-lg">
+                <i class="fa-solid fa-triangle-exclamation text-yellow-500 text-xl"></i>
+            </div>
+        </div>
+
+        <!-- Out of Stock -->
+        <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+            <div>
+                <p class="text-gray-600">Out of Stock</p>
+                <h2 class="text-2xl font-bold text-red-600">12</h2>
+                <p class="text-gray-600 text-sm">Needs attention</p>
+            </div>
+            <div class="bg-red-100 p-3 rounded-lg">
+                <i class="fa-solid fa-triangle-exclamation text-red-500 text-xl"></i>
+            </div>
+        </div>
+
+        <!-- Inventory Value -->
+        <div class="bg-white p-6 rounded-lg shadow-md flex justify-between items-center">
+            <div>
+                <p class="text-gray-600">Value</p>
+                <h2 class="text-2xl font-bold">$324.5k</h2>
+                <p class="text-green-600 text-sm"><i class="fa-solid fa-arrow-up"></i> $12.5k this month</p>
+            </div>
+            <div class="bg-green-100 p-3 rounded-lg">
+                <i class="fa-solid fa-box text-green-500 text-xl"></i>
+            </div>
+        </div>
+    </div>
+
+    <!-- Table Section -->
+    <div class="flex w-full justify-center mt-6">
+        <table class="border-collapse bg-white shadow-lg rounded-lg w-5/6">
+            <thead>
+                <tr class="bg-violet-500 text-white uppercase text-sm leading-normal">
+                    <th class="py-3 px-6 text-left">Item Name</th>
+                    <th class="py-3 px-6 text-left">SKU</th>
+                    <th class="py-3 px-6 text-center">Price(₹)</th>
+                    <th class="py-3 px-6 text-center">Category</th>
+                    <th class="py-3 px-6 text-center">Quantity</th>
+                    <th class="py-3 px-6 text-center">Status</th>
+                    <th class="py-3 px-6 text-center">Supplier</th>
+                    <th class="py-3 px-6 text-center">Last Updated</th>
+                    <th class="py-3 px-6 text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody class="text-gray-700 text-sm">
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="py-3 px-6 font-semibold">Office Chair</td>
+                    <td class="py-3 px-6">FRN-001</td>
+                    <td class="py-3 px-6 text-center">100</td>
+                    <td class="py-3 px-6 text-center">Furniture</td>
+                    <td class="py-3 px-6 text-center">-</td>
+                    <td class="py-3 px-6 text-center">
+                        <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">In Stock</span>
+                    </td>
+                    <td class="py-3 px-6 text-center">Furniture World</td>
+                    <td class="py-3 px-6 text-center">2h ago</td>
+                    <td class="py-3 px-6 text-center">
+                        <a href="editProduct"><button class="bg-violet-800 text-white px-4 py-2 rounded-md text-xs hover:bg-blue-700 transition duration-200">
+                            <i class="fa-solid fa-pen mr-1"></i> Edit
+                        </button>
+                    </a>
+                        <button class="bg-red-500 text-white px-4 py-2 rounded-md text-xs hover:bg-red-700 transition duration-200 ml-2">
+                            <i class="fa-solid fa-trash mr-1"></i> Delete
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
 </body>
 </html>

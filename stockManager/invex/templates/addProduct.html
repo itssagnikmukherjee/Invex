@@ -1,11 +1,104 @@
+{% load static tailwind_tags %}
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Add New Product</title>
+    {% tailwind_css %}
+    <script src="https://kit.fontawesome.com/8fe8423612.js" crossorigin="anonymous"></script>
 </head>
-<body>
-    <h1>Add Product after login</h1>
+<body class="bg-gray-100">
+
+    <!-- Navbar -->
+    <div class="nav flex p-5 justify-between items-center bg-white shadow-md">
+        <div class="logoSec flex items-center">
+            <img src="{% static 'logo.png' %}" class="w-10 mr-2" alt="Logo">
+            <div class="logoText text-4xl font-semibold text-violet-700">Invex</div>
+        </div>
+        <a href="dashboard">
+            <div class="bg-violet-700 flex items-center px-6 py-2 rounded-lg text-white hover:bg-white hover:text-violet-700 border-2 border-violet-700 cursor-pointer transition duration-300">
+                <i class="fa-solid fa-arrow-left mr-2"></i> Back
+            </div>
+        </a>
+    </div>
+
+    <!-- Add Product Form -->
+    <div class="max-w-3xl mx-auto bg-white mt-10 p-8 rounded-lg shadow-md">
+        <h2 class="text-2xl font-bold text-violet-700 mb-5 flex items-center">
+            <i class="fa-solid fa-plus-circle mr-2"></i> Add New Product
+        </h2>
+
+        <form action="addProduct" method="POST">
+            {% csrf_token %}
+
+            <!-- Product Name -->
+            <div class="mb-4">
+                <label class="block text-gray-700">Product Name</label>
+                <div class="relative">
+                    <i class="fa-solid fa-box absolute left-3 top-3 text-gray-500"></i>
+                    <input type="text" name="product_name" placeholder="Enter product name" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                </div>
+            </div>
+
+            <!-- SKU -->
+            <div class="mb-4">
+                <label class="block text-gray-700">SKU</label>
+                <input type="text" name="sku" placeholder="Enter SKU" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+            </div>
+
+            <!-- Price -->
+            <div class="mb-4">
+                <label class="block text-gray-700">Price (₹)</label>
+                <input type="number" name="price" placeholder="Enter price" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+            </div>
+
+            <!-- Category -->
+            <div class="mb-4">
+                <label class="block text-gray-700">Category</label>
+                <select name="category" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                    <option disabled selected>Select category</option>
+                    <option>Furniture</option>
+                    <option>Electronics</option>
+                    <option>Clothing</option>
+                </select>
+            </div>
+
+            <!-- Quantity -->
+            <div class="mb-4">
+                <label class="block text-gray-700">Quantity</label>
+                <input type="number" name="quantity" placeholder="Enter quantity" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+            </div>
+
+            <!-- Supplier -->
+            <div class="mb-4">
+                <label class="block text-gray-700">Supplier</label>
+                <input type="text" name="supplier" placeholder="Enter supplier name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+            </div>
+
+            <!-- Status -->
+            <div class="mb-4">
+                <label class="block text-gray-700">Status</label>
+                <select name="status" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                    <option selected>In Stock</option>
+                    <option>Low Stock</option>
+                    <option>Out of Stock</option>
+                </select>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-between mt-6">
+                <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">
+                    <i class="fa-solid fa-check mr-2"></i> Add Product
+                </button>
+                <a href="dashboard" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                    <i class="fa-solid fa-times mr-2"></i> Cancel
+                </a>
+            </div>
+
+        </form>
+    </div>
+
 </body>
 </html>
