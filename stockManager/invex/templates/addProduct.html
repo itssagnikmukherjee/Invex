@@ -17,7 +17,7 @@
             <img src="{% static 'logo.png' %}" class="w-10 mr-2" alt="Logo">
             <div class="logoText text-4xl font-semibold text-violet-700">Invex</div>
         </div>
-        <a href="dashboard">
+        <a href="{% url 'productDetails' %}">
             <div class="bg-violet-700 flex items-center px-6 py-2 rounded-lg text-white hover:bg-white hover:text-violet-700 border-2 border-violet-700 cursor-pointer transition duration-300">
                 <i class="fa-solid fa-arrow-left mr-2"></i> Back
             </div>
@@ -30,7 +30,7 @@
             <i class="fa-solid fa-plus-circle mr-2"></i> Add New Product
         </h2>
 
-        <form action="addProduct" method="POST">
+        <form action="{% url 'add' %}" method="POST" enctype="multipart/form-data">
             {% csrf_token %}
 
             <!-- Product Name -->
@@ -38,26 +38,26 @@
                 <label class="block text-gray-700">Product Name</label>
                 <div class="relative">
                     <i class="fa-solid fa-box absolute left-3 top-3 text-gray-500"></i>
-                    <input type="text" name="product_name" placeholder="Enter product name" class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                    <input type="text" name="product_name" placeholder="Enter product name" required class="w-full p-3 pl-10 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
                 </div>
             </div>
 
             <!-- SKU -->
             <div class="mb-4">
                 <label class="block text-gray-700">SKU</label>
-                <input type="text" name="sku" placeholder="Enter SKU" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                <input type="text" name="sku" placeholder="Enter SKU" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
             </div>
 
             <!-- Price -->
             <div class="mb-4">
                 <label class="block text-gray-700">Price (₹)</label>
-                <input type="number" name="price" placeholder="Enter price" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                <input type="number" name="price" placeholder="Enter price" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
             </div>
 
             <!-- Category -->
             <div class="mb-4">
                 <label class="block text-gray-700">Category</label>
-                <select name="category" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                <select name="category" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
                     <option disabled selected>Select category</option>
                     <option>Furniture</option>
                     <option>Electronics</option>
@@ -68,23 +68,29 @@
             <!-- Quantity -->
             <div class="mb-4">
                 <label class="block text-gray-700">Quantity</label>
-                <input type="number" name="quantity" placeholder="Enter quantity" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                <input type="number" name="quantity" placeholder="Enter quantity" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
             </div>
 
             <!-- Supplier -->
             <div class="mb-4">
                 <label class="block text-gray-700">Supplier</label>
-                <input type="text" name="supplier" placeholder="Enter supplier name" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                <input type="text" name="supplier" placeholder="Enter supplier name" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
             </div>
 
             <!-- Status -->
             <div class="mb-4">
                 <label class="block text-gray-700">Status</label>
-                <select name="status" class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
+                <select name="status" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
                     <option selected>In Stock</option>
                     <option>Low Stock</option>
                     <option>Out of Stock</option>
                 </select>
+            </div>
+
+            <!-- Image Upload -->
+            <div class="mb-4">
+                <label class="block text-gray-700">Product Image</label>
+                <input type="file" name="image" accept="image/*" required class="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-violet-500 transition duration-300">
             </div>
 
             <!-- Action Buttons -->
@@ -92,7 +98,7 @@
                 <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg hover:bg-green-700 transition duration-300">
                     <i class="fa-solid fa-check mr-2"></i> Add Product
                 </button>
-                <a href="dashboard" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition duration-300">
+                <a href="{% url 'productDetails' %}" class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-700 transition duration-300">
                     <i class="fa-solid fa-times mr-2"></i> Cancel
                 </a>
             </div>

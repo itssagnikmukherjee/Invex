@@ -47,19 +47,23 @@
             </tr>
         </thead>
         <tbody class="text-gray-700 text-sm">
+            {% for product in products %}
+            {% if product.isVisible == True %}
             <tr class="border-b hover:bg-gray-50">
-                <td class="py-3 px-6 font-semibold">Office Chair</td>
-                <td class="py-3 px-6">FRN-001</td>
-                <td class="py-3 px-6 text-center">100</td>
-                <td class="py-3 px-6 text-center">Furniture</td>
-                <td class="py-3 px-6 text-center">-</td>
-                <td class="py-3 px-6 text-center">
-                    <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs">In Stock</span>
-                </td>
-                <td class="py-3 px-6 text-center">Furniture World</td>
-                <td class="py-3 px-6 text-center">2h ago</td>
+              <td class="py-3 px-6 font-semibold">{{ product.name }}</td>
+              <td class="py-3 px-6">{{ product.sku }}</td>
+              <td class="py-3 px-6 text-center">{{ product.price }}</td>
+              <td class="py-3 px-6 text-center">{{ product.category }}</td>
+              <td class="py-3 px-6 text-center">-</td>
+              <td class="py-3 px-6 text-center">
+                -
+              </td>
+              <td class="py-3 px-6 text-center">-</td>
+              <td class="py-3 px-6 text-center">{{ product.date }}</td>
             </tr>
-        </tbody>
+            {% endif %}
+            {% endfor %}
+          </tbody>
     </table>
     </div>
 

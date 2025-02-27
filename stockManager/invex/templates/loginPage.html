@@ -12,17 +12,18 @@
 <body class="flex items-center justify-center h-screen bg-gray-100">
     <div class="bg-white p-8 rounded-lg shadow-lg w-96">
         <h2 class="text-2xl font-semibold text-violet-700 text-center mb-6">Welcome Back</h2>
-        
+        <form action="login" method="POST">
+    {% csrf_token %}
         <!-- Username Field -->
         <div class="mb-4 relative">
             <i class="fa-solid fa-user absolute left-3 top-3.5 text-gray-500"></i>
-            <input type="text" placeholder="Enter username" class="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 transition duration-300">
+            <input type="text" name="username" placeholder="Enter username" class="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 transition duration-300">
         </div>
         
         <!-- Password Field -->
         <div class="mb-4 relative">
             <i class="fa-solid fa-lock absolute left-3 top-3.5 text-gray-500"></i>
-            <input type="password" placeholder="Enter password" class="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 transition duration-300">
+            <input type="password" name="password" placeholder="Enter password" class="w-full pl-10 p-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-violet-500 transition duration-300">
         </div>
         
         <!-- Forgot Password & Remember Me -->
@@ -34,7 +35,7 @@
         </div>
 
         <!-- Login Button -->
-        <button class="w-full bg-violet-700 text-white py-3 rounded-lg hover:bg-white hover:text-violet-700 border-2 border-violet-700 transition duration-300">
+        <button class="w-full bg-violet-700 text-white py-3 rounded-lg hover:bg-white hover:text-violet-700 border-2 border-violet-700 transition duration-300" type="submit">
             <i class="fa-solid fa-right-to-bracket mr-2"></i> Login
         </button>
         
@@ -42,6 +43,7 @@
         <p class="text-center text-gray-600 mt-4">
             Don't have an account? <a href="#" class="text-violet-700 hover:underline">Sign Up</a>
         </p>
+    </form>
     </div>
 </body>
 </html>
